@@ -16,6 +16,16 @@ x = temp.
 
 These equations allowed the construction of the Mandelbrot set using various constants and the evaluation of different numbers for the variables.
 
+## Parallelization within C using OpenMP and MPI
+
+### OpenMP (Open Multi-Processing)
+
+OpenMP is a widely used API that facilitates shared-memory parallelization in C, C++, and Fortran programs. By introducing pragmas (compiler directives) into the code, OpenMP enables the creation of parallel regions, where multiple threads execute tasks concurrently. In the context of this project, OpenMP directives were strategically utilized to parallelize the Mandelbrot set computation, particularly employing a master-worker model for efficient workload distribution among threads within a shared-memory environment.
+
+### MPI (Message Passing Interface)
+
+MPI, or Message Passing Interface, is a standardized and portable message-passing system designed for parallel computing on distributed-memory architectures. MPI allows communication and coordination between different processes or nodes in a parallel system. In this project, MPI was employed to parallelize the Mandelbrot set computation across multiple nodes. It facilitated the distribution of data, workload assignment, and synchronization among nodes in a cluster, contributing to efficient parallelization across distributed-memory systems.
+
 ## Load Imbalance Issue
 
 Initially, a load imbalance issue occurred with the parallel part of the code. To address this, a master-worker algorithm was implemented. Workers (nodes) received small portions from the master, dynamically scheduled calculations for their threads, and reported back to the master for a new portion. This approach solved the load imbalance problem.
@@ -34,14 +44,17 @@ Several distribution sizes were tested to find the optimal number of elements to
 
 This plot illustrates the total runtime variation with the changing number of nodes. The increasing runtime with more nodes is attributed to communication overhead. Improved communication methods may enhance the efficiency of the algorithm.
 
+![plot1](https://github.com/sullivanm22/Mandelbrot-Set/assets/59747399/2d4896cd-e066-4cb8-9365-2d4a00b215f0)
+
 ### Plot 2: Runtime of 11 Worker Nodes
 
 This plot displays the runtime of all 11 worker nodes when running the algorithm with 12 total nodes. The small differences in runtime among the worker nodes are negligible when understanding the total program runtime.
+
+![plt2](https://github.com/sullivanm22/Mandelbrot-Set/assets/59747399/971ea817-daac-4c65-a22a-47c39be35c09)
 
 ### Plot 3: Rank 1 Thread’s Runtime
 
 This plot shows the runtime of all 6 nodes on rank 1. The small differences in runtime (0.00004 seconds) are due to the uneven distribution of work among threads.
 
----
+![plot3](https://github.com/sullivanm22/Mandelbrot-Set/assets/59747399/6efea315-91dc-42df-9033-e798ccd5ec5c)
 
-Feel free to adjust the formatting further based on your preferences.
