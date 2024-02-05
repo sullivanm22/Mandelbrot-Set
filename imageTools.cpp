@@ -1,4 +1,4 @@
-@Author Micah Schuster
+/*@Auther Prof. Micah Schuster*/
 #include <iostream>
 #include <cmath>
 #include <opencv2/opencv.hpp>
